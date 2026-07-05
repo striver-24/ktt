@@ -2,9 +2,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { media } from './media';
 
+const whatsappNumber = '919628897628';
+const whatsappNumberDisplay = '+91 96288 97628';
+
+function createWhatsAppLink(message: string) {
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
 export const whatsappLinks = {
-  general: 'https://wa.me/7737826639?text=%22Hi!%20I%20want%20to%20enquire%20about%20KTT.%22',
-  visa: 'https://wa.me/7737826639?text=%22Hi!%20I%20want%20to%20connect%20with%20a%20Visa%20Expert.%22',
+  general: createWhatsAppLink('Hi! I want to enquire about KTT.'),
+  visa: createWhatsAppLink('Hi! I want to connect with a Visa Expert.'),
 };
 
 function IconLink({ href, src, alt, label }: { href: string; src: string; alt: string; label: string }) {
@@ -35,11 +42,11 @@ export function Header() {
           </span>
         </Link>
 
-        <div className="topbar__contact">
-          <span>Call / WhatsApp: +91 77378 26639</span>
-        </div>
+        <a className="topbar__contact" href={whatsappLinks.general} target="_blank" rel="noreferrer">
+          Call / WhatsApp: {whatsappNumberDisplay}
+        </a>
 
-        <nav className="nav" aria-label="Primary">
+        <nav className="nav nav--desktop" aria-label="Primary">
           <Link href="/">Home</Link>
           <Link href="/about-us">About Us</Link>
           <Link href="/packages">Packages</Link>
@@ -48,6 +55,18 @@ export function Header() {
           <Link href="/blog">Blog</Link>
           <IconLink href={whatsappLinks.general} src={media.whatsappIcon.src} alt="WhatsApp" label="WhatsApp" />
         </nav>
+
+        <details className="mobile-menu">
+          <summary className="mobile-menu__toggle">Menu</summary>
+          <nav className="mobile-menu__panel" aria-label="Mobile primary">
+            <Link href="/">Home</Link>
+            <Link href="/about-us">About Us</Link>
+            <Link href="/packages">Packages</Link>
+            <Link href="/our-services">Our Services</Link>
+            <Link href="/contact-us">Contact Us</Link>
+            <Link href="/blog">Blog</Link>
+          </nav>
+        </details>
       </div>
     </header>
   );
@@ -77,8 +96,10 @@ export function Footer() {
           <IconLink href="https://www.facebook.com/KalaamToursAndTravels?rdid=FSIVketoo56Hfa1u&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1HSDM4rasz%2F%3Fref%3D1" src={media.facebookIcon.src} alt="Facebook" label="Facebook" />
         </div>
       </div>
-      <div className="container" style={{ paddingTop: 14, color: 'var(--muted)', textAlign: 'center' }}>
-        <div>Phone: +91 77378 26639</div>
+      <div className="container footer__meta">
+        <a href={whatsappLinks.general} target="_blank" rel="noreferrer">
+          Phone: {whatsappNumberDisplay}
+        </a>
         <div style={{ marginTop: 6 }}>Built with love and caffeine by BlinkNext. © 2025 by KTT.</div>
       </div>
     </footer>
