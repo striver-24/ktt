@@ -3,8 +3,8 @@ import './globals.css';
 import { FloatingChatButton } from '@/components/site';
 
 export const metadata: Metadata = {
-  title: 'Kalaam Tours & Travels',
-  description: 'Blessed Umrah journeys crafted with care.',
+  title: 'Kalaam Tours & Travels | Umrah and Visa Specialists',
+  description: 'Umrah and visa specialists crafting blessed journeys with care.',
 };
 
 export default function RootLayout({
